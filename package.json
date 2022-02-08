@@ -1,0 +1,26 @@
+{
+  "name": "gmapnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhamchugh/GMapNodeJs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubhamchugh/GMapNodeJs/issues"
+  },
+  "homepage": "https://github.com/shubhamchugh/GMapNodeJs#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "puppeteer": "^13.1.3"
+  }
+}
