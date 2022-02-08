@@ -4,7 +4,7 @@
 Download Api File to the server
 ```sh
 cd /home/
-git clone https://github.com/shubhamchugh/GMapScraperAPI.git
+git clone https://github.com/shubhamchugh/NodeJS-API.git
 ```
 
 
@@ -43,17 +43,17 @@ Start/stop/restart Nodejs Server with apllication
 Please check dir before exicute the comand
 
 ```sh
-cd /home/GMapScraperAPI/
-pm2 start express.js -i max
-pm2 stop express.js -i max
-pm2 restart express.js -i max
+cd /home/NodeJS-API/
+pm2 start myAppName.js -i max
+pm2 stop myAppName.js -i max
+pm2 restart myAppName.js -i max
 ```
 
 if not start Node js Server Try with Force
 ```sh
-pm2 start express.js -i max -f
-pm2 stop express.js -i max -f 
-pm2 restart express.js -i max -f
+pm2 start myAppName.js -i max -f
+pm2 stop myAppName.js -i max -f 
+pm2 restart myAppName.js -i max -f
 ```
 
 
