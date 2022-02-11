@@ -77,11 +77,30 @@ app.get('/google', (req, res) => {
             // await page.waitForSelector('div.iDjcJe.IX9Lgd.wwB5gf span')
             await page.waitFor(3000);
 
+            // remove some html from the DOM (Answers Link Class Remove)
+            let div_selector_to_remove = "div.g";
+            await page.evaluate((sel) => {
+                var elements = document.querySelectorAll(sel);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].parentNode.removeChild(elements[i]);
+                }
+            }, div_selector_to_remove)
+
+            let div_selector_to_remove_2 = "div.hwqd7e.d0fCJc.BOZ6hd";
+            await page.evaluate((sel) => {
+                var elements2 = document.querySelectorAll(sel);
+                for (var i = 0; i < elements2.length; i++) {
+                    elements2[i].parentNode.removeChild(elements2[i]);
+                }
+            }, div_selector_to_remove_2)
+
             var linkTextsQuestions = await page.$$eval("div.iDjcJe.IX9Lgd.wwB5gf span",
                 elements => elements.map(item => item.textContent))
 
             var linkTextsAnswers = await page.$$eval("div.MBtdbb",
                 elements => elements.map(item => item.textContent))
+
+
 
             var finalResult = {
                 'status': 'success',
