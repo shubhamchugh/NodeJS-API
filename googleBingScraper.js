@@ -179,6 +179,26 @@ app.get('/bing', (req, res) => {
         await page.waitFor(3000);
         try {
 
+
+
+            // remove some html from the DOM (Answers Link Class Remove)
+            let div_selector_to_remove = "div.df_img.df_atct.tall";
+            await page.evaluate((sel) => {
+                var elements = document.querySelectorAll(sel);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].parentNode.removeChild(elements[i]);
+                }
+            }, div_selector_to_remove)
+
+
+            let div_selector_to_remove_2 = "div.b_footnote.imgtt_ref";
+            await page.evaluate((sel) => {
+                var elements2 = document.querySelectorAll(sel);
+                for (var i = 0; i < elements2.length; i++) {
+                    elements2[i].parentNode.removeChild(elements2[i]);
+                }
+            }, div_selector_to_remove_2)
+
             var resultTitle = await page.$$eval("div.b_title > h2",
                 elements => elements.map(item => item.textContent))
             //console.log(resultTitle)
