@@ -9,6 +9,7 @@ git clone https://github.com/shubhamchugh/NodeJS-API.git
 
 
 ```sh
+sudo apt update
 sudo apt install npm
 ```
 
