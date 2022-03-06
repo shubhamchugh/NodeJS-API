@@ -5,6 +5,7 @@ Download Api File to the server
 ```sh
 cd /home/
 git clone https://github.com/shubhamchugh/NodeJS-API.git
+cd /home/NodeJS-API/
 ```
 
 
