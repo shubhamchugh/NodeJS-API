@@ -289,7 +289,7 @@ app.get('/bing', (req, res) => {
                 console.log('no icon found for click')
             }
 
-            var popQuestions = await page.$$eval("div.scs_faAc > div.b_vPanel > div > div.b_module_expansion_control.b_module_head > div.b_module_expansion > div.b_expansion_wrapper.b_collapse.b_onpage_expansion",
+            var popQuestions = await page.$$eval("div.scs_faAc > div.b_vPanel > div.b_module_expansion_control.b_module_head > div.b_module_expansion > div.b_expansion_wrapper.b_collapse.b_onpage_expansion",
                 elements => elements.map(item => item.textContent))
             //console.log(popQuestions)
             var popAnswers = await page.$$eval("div.rwrl.rwrl_small.rwrl_resetFont",
@@ -337,6 +337,332 @@ app.get('/bing', (req, res) => {
         res.send(value); // Yay, output the Results...
     });
 })
+
+
+app.get('/bing-thumb', (req, res) => {
+
+    // Access the provided 'page' and 'limt' query parameters
+    let url = req.query.url;
+
+    let scrape = async () => { // Prepare scrape...
+
+
+        const browser = await puppeteer.launch({
+
+            // headless: false, //enable only when on localServer
+            headless: false,
+
+            ignoreDefaultArgs: ["--enable-automation"],
+            ignoreHTTPSErrors: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-accelerated-2d-canvas',
+                '--no-zygote',
+                '--renderer-process-limit=1',
+                '--no-first-run',
+                '--disable-dev-shm-usage',
+                '--single-process', // <- this one doesn't works in Windows
+                '--disable-gpu'
+            ],
+        }); // Prevent non-needed issues for *NIX
+        const page = await browser.newPage(); // Create request for the new page to obtain...
+        await page.setViewport({
+            width: 2000,
+            height: 1000,
+        });
+        await page.emulateTimezone("Asia/Singapore");
+
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+
+        // Replace with your Google Maps URL... Or Test the Microsoft one...
+        //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
+
+        const response = await page.goto(url, {
+            waitUntil: 'networkidle2',
+            timeout: 0
+        }); // Define the Maps URL to Scrape...
+
+        console.log('waiting for selector');
+        await page.waitFor(3000);
+
+        try {
+
+            const result = await page.evaluate(() => { // Let's create variables and store values...
+                let thumbnailClasses = document.querySelectorAll('a.iusc');
+                let thumbnail = []
+
+                for (let elements of thumbnailClasses) {
+                    thumbnail.push(elements.getAttribute('m'));
+                }
+
+
+                var thumbnail_j = JSON.parse(thumbnail[0]);
+                return thumbnail_j.murl;
+            });
+
+            return result;
+
+        } catch (err) {
+            console.error(err);
+            return result;
+            process.exit(1);
+        } finally {
+            await page.close();
+            await browser.close();
+        }
+    };
+
+    scrape().then((value) => { // Scrape and output the results...
+        res.send(value); // Yay, output the Results...
+    });
+})
+
+
+
+app.get('/bing-images', (req, res) => {
+
+    // Access the provided 'page' and 'limt' query parameters
+    let url = req.query.url;
+
+    let scrape = async () => { // Prepare scrape...
+
+
+        const browser = await puppeteer.launch({
+
+            // headless: false, //enable only when on localServer
+            headless: true,
+
+            ignoreDefaultArgs: ["--enable-automation"],
+            ignoreHTTPSErrors: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-accelerated-2d-canvas',
+                '--no-zygote',
+                '--renderer-process-limit=1',
+                '--no-first-run',
+                '--disable-dev-shm-usage',
+                '--single-process', // <- this one doesn't works in Windows
+                '--disable-gpu'
+            ],
+        }); // Prevent non-needed issues for *NIX
+        const page = await browser.newPage(); // Create request for the new page to obtain...
+        await page.setViewport({
+            width: 2000,
+            height: 1000,
+        });
+        await page.emulateTimezone("Asia/Singapore");
+
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+
+        // Replace with your Google Maps URL... Or Test the Microsoft one...
+        //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
+
+        const response = await page.goto(url, {
+            waitUntil: 'networkidle2',
+            timeout: 0
+        }); // Define the Maps URL to Scrape...
+
+        console.log('waiting for selector');
+        await page.waitFor(3000);
+
+        try {
+            const result = await page.evaluate(() => { // Let's create variables and store values...
+                let imagesClasses = document.querySelectorAll('a.iusc');
+                let images = {
+                    'images': []
+                }
+
+                for (let elements of imagesClasses) {
+                    images['images'].push(elements.getAttribute('m'));
+                }
+
+                return images;
+            });
+
+            return result;
+
+        } catch (err) {
+            console.error(err);
+            return result;
+            process.exit(1);
+        } finally {
+            await page.close();
+            await browser.close();
+        }
+    };
+
+    scrape().then((value) => { // Scrape and output the results...
+        res.send(value); // Yay, output the Results...
+    });
+})
+
+app.get('/bing-news', (req, res) => {
+
+    // Access the provided 'page' and 'limt' query parameters
+    let url = req.query.url;
+
+    let scrape = async () => { // Prepare scrape...
+
+
+        const browser = await puppeteer.launch({
+
+            // headless: false, //enable only when on localServer
+            headless: true,
+
+            ignoreDefaultArgs: ["--enable-automation"],
+            ignoreHTTPSErrors: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-accelerated-2d-canvas',
+                '--no-zygote',
+                '--renderer-process-limit=1',
+                '--no-first-run',
+                '--disable-dev-shm-usage',
+                '--single-process', // <- this one doesn't works in Windows
+                '--disable-gpu'
+            ],
+        }); // Prevent non-needed issues for *NIX
+        const page = await browser.newPage(); // Create request for the new page to obtain...
+        await page.setViewport({
+            width: 2000,
+            height: 1000,
+        });
+        await page.emulateTimezone("Asia/Singapore");
+
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+
+        // Replace with your Google Maps URL... Or Test the Microsoft one...
+        //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
+
+        const response = await page.goto(url, {
+            waitUntil: 'networkidle2',
+            timeout: 0
+        }); // Define the Maps URL to Scrape...
+
+        console.log('waiting for selector');
+        await page.waitFor(3000);
+
+        try {
+            const result = await page.evaluate(() => { // Let's create variables and store values...
+
+                let titleClasses = document.querySelectorAll('a.title');
+                let title = []
+
+                for (let elements of titleClasses) {
+                    title.push(elements.textContent);
+                }
+
+                let descriptionClasses = document.querySelectorAll('div.snippet');
+                let description = []
+
+                for (let elements of descriptionClasses) {
+                    description.push(elements.textContent);
+                }
+
+                return {
+                    title,
+                    description
+                };
+            });
+
+            return result;
+
+        } catch (err) {
+            console.error(err);
+            return result;
+            process.exit(1);
+        } finally {
+            await page.close();
+            await browser.close();
+        }
+    };
+
+    scrape().then((value) => { // Scrape and output the results...
+        res.send(value); // Yay, output the Results...
+    });
+})
+
+
+
+app.get('/bing-videos', (req, res) => {
+
+    // Access the provided 'page' and 'limt' query parameters
+    let url = req.query.url;
+
+    let scrape = async () => { // Prepare scrape...
+
+
+        const browser = await puppeteer.launch({
+
+            // headless: false, //enable only when on localServer
+            headless: true,
+
+            ignoreDefaultArgs: ["--enable-automation"],
+            ignoreHTTPSErrors: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-accelerated-2d-canvas',
+                '--no-zygote',
+                '--renderer-process-limit=1',
+                '--no-first-run',
+                '--disable-dev-shm-usage',
+                '--single-process', // <- this one doesn't works in Windows
+                '--disable-gpu'
+            ],
+        }); // Prevent non-needed issues for *NIX
+        const page = await browser.newPage(); // Create request for the new page to obtain...
+        await page.setViewport({
+            width: 2000,
+            height: 1000,
+        });
+        await page.emulateTimezone("Asia/Singapore");
+
+        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+
+        // Replace with your Google Maps URL... Or Test the Microsoft one...
+        //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
+
+        const response = await page.goto(url, {
+            waitUntil: 'networkidle0',
+            timeout: 0
+        }); // Define the Maps URL to Scrape...
+
+        console.log('waiting for selector');
+        await page.waitFor(3000);
+
+        try {
+            const result = await page.evaluate(() => { // Let's create variables and store values...
+                let videosClasses = document.querySelectorAll('div.vrhdata');
+                let videos = []
+
+                for (let elements of videosClasses) {
+                    videos.push(elements.getAttribute('vrhm'));
+                }
+
+                return videos;
+            });
+
+            return result;
+
+        } catch (err) {
+            console.error(err);
+            return result;
+            process.exit(1);
+        } finally {
+            await page.close();
+            await browser.close();
+        }
+    };
+
+    scrape().then((value) => { // Scrape and output the results...
+        res.send(value); // Yay, output the Results...
+    });
+})
+
 
 
 
