@@ -350,7 +350,7 @@ app.get('/bing-thumb', (req, res) => {
         const browser = await puppeteer.launch({
 
             // headless: false, //enable only when on localServer
-            headless: false,
+            headless: true,
 
             ignoreDefaultArgs: ["--enable-automation"],
             ignoreHTTPSErrors: true,
