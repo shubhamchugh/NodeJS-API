@@ -405,7 +405,7 @@ app.get('/bing-thumb', (req, res) => {
 
         } catch (err) {
             console.error(err);
-            return result;
+            return null;
             process.exit(1);
         } finally {
             await page.close();
@@ -485,7 +485,7 @@ app.get('/bing-images', (req, res) => {
 
         } catch (err) {
             console.error(err);
-            return result;
+            return null;
             process.exit(1);
         } finally {
             await page.close();
@@ -572,7 +572,7 @@ app.get('/bing-news', (req, res) => {
 
         } catch (err) {
             console.error(err);
-            return result;
+            return null;
             process.exit(1);
         } finally {
             await page.close();
@@ -650,7 +650,7 @@ app.get('/bing-videos', (req, res) => {
 
         } catch (err) {
             console.error(err);
-            return result;
+            return null;
             process.exit(1);
         } finally {
             await page.close();
