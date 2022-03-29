@@ -34,9 +34,9 @@ app.get('/google', (req, res) => {
             width: 2000,
             height: 1000,
         });
-        await page.emulateTimezone("Asia/Singapore");
+        // await page.emulateTimezone("Asia/Singapore");
 
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+        // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
 
 
         // Replace with your Google Maps URL... Or Test the Microsoft one...
@@ -180,9 +180,9 @@ app.get('/bing', (req, res) => {
             width: 2000,
             height: 1000,
         });
-        await page.emulateTimezone("Asia/Singapore");
+        // await page.emulateTimezone("Asia/Singapore");
 
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+        // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
 
         // Replace with your Google Maps URL... Or Test the Microsoft one...
         //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
@@ -371,9 +371,9 @@ app.get('/bing-thumb', (req, res) => {
             width: 2000,
             height: 1000,
         });
-        await page.emulateTimezone("Asia/Singapore");
+        // await page.emulateTimezone("Asia/Singapore");
 
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+        // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
 
         // Replace with your Google Maps URL... Or Test the Microsoft one...
         //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
@@ -452,9 +452,9 @@ app.get('/bing-images', (req, res) => {
             width: 2000,
             height: 1000,
         });
-        await page.emulateTimezone("Asia/Singapore");
+        // await page.emulateTimezone("Asia/Singapore");
 
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+        // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
 
         // Replace with your Google Maps URL... Or Test the Microsoft one...
         //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
@@ -530,9 +530,9 @@ app.get('/bing-news', (req, res) => {
             width: 2000,
             height: 1000,
         });
-        await page.emulateTimezone("Asia/Singapore");
+        // await page.emulateTimezone("Asia/Singapore");
 
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+        // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
 
         // Replace with your Google Maps URL... Or Test the Microsoft one...
         //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
@@ -619,9 +619,9 @@ app.get('/bing-videos', (req, res) => {
             width: 2000,
             height: 1000,
         });
-        await page.emulateTimezone("Asia/Singapore");
+        // await page.emulateTimezone("Asia/Singapore");
 
-        await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
+        // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36');
 
         // Replace with your Google Maps URL... Or Test the Microsoft one...
         //await page.goto('https://www.google.com/maps/place/Microsoft/@36.1275216,-115.1728651,17z/data=!3m1!5s0x80c8c416a26be787:0x4392ab27a0ae83e0!4m7!3m6!1s0x80c8c4141f4642c5:0x764c3f951cfc6355!8m2!3d36.1275216!4d-115.1706764!9m1!1b1');
