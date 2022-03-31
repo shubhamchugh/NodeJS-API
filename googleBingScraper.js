@@ -44,7 +44,7 @@ app.get('/google', (req, res) => {
 
         const response = await page.goto(url, {
             waitUntil: 'networkidle2',
-            timeout: 0
+            // timeout: 0
         }); // Define the Maps URL to Scrape...
 
         console.log('waiting for selector');
@@ -189,7 +189,7 @@ app.get('/bing', (req, res) => {
 
         const response = await page.goto(url, {
             waitUntil: 'networkidle2',
-            timeout: 0
+            // timeout: 0
         }); // Define the Maps URL to Scrape...
 
         console.log('waiting for selector');
@@ -380,7 +380,7 @@ app.get('/bing-thumb', (req, res) => {
 
         const response = await page.goto(url, {
             waitUntil: 'networkidle2',
-            timeout: 0
+            // timeout: 0
         }); // Define the Maps URL to Scrape...
 
         console.log('waiting for selector');
@@ -461,7 +461,7 @@ app.get('/bing-images', (req, res) => {
 
         const response = await page.goto(url, {
             waitUntil: 'networkidle2',
-            timeout: 0
+            // timeout: 0
         }); // Define the Maps URL to Scrape...
 
         console.log('waiting for selector');
@@ -539,7 +539,7 @@ app.get('/bing-news', (req, res) => {
 
         const response = await page.goto(url, {
             waitUntil: 'networkidle2',
-            timeout: 0
+            // timeout: 0
         }); // Define the Maps URL to Scrape...
 
         console.log('waiting for selector');
@@ -628,7 +628,7 @@ app.get('/bing-videos', (req, res) => {
 
         const response = await page.goto(url, {
             waitUntil: 'networkidle0',
-            timeout: 0
+            // timeout: 0
         }); // Define the Maps URL to Scrape...
 
         console.log('waiting for selector');
