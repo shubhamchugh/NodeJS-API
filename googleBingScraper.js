@@ -218,6 +218,11 @@ app.get('/bing', (req, res) => {
                 elements => elements.map(item => item.textContent))
             //console.log(resultTitle)
 
+            var resultTitle_1 = await page.$$eval("li.b_algo >h2",
+                elements => elements.map(item => item.textContent))
+            //console.log(resultTitle)
+            resultTitle = (!resultTitle.length) ? resultTitle_1 : resultTitle;
+
             var resultDescription = await page.$$eval("div.b_caption > p",
                 elements => elements.map(item => item.textContent))
             //console.log(resultDescription)
@@ -225,6 +230,11 @@ app.get('/bing', (req, res) => {
             var resultUrl = await page.$$eval("div.b_title > h2 > a",
                 elements => elements.map(item => item.getAttribute("href")))
             //console.log(resultUrl)
+
+            var resultUrl_1 = await page.$$eval("li.b_algo >h2 > a",
+                elements => elements.map(item => item.getAttribute("href")))
+            //console.log(resultUrl)
+            resultUrl = (!resultUrl.length) ? resultUrl_1 : resultUrl;
 
             var relatedKeywords = await page.$$eval("div.b_rs > ul.b_vList.b_divsec > li",
                 elements => elements.map(item => item.textContent))
@@ -266,8 +276,10 @@ app.get('/bing', (req, res) => {
             var finalResult = {
                 'status': 'success',
                 'resultTitle': resultTitle,
+
                 'resultDescription': resultDescription,
                 'resultUrl': resultUrl,
+
                 'mainQuestions': mainQuestions,
                 'mainAnswers': mainAnswers,
                 'richSnippet': richSnippet,
