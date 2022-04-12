@@ -3,7 +3,8 @@ sudo ufw disable
 echo "===========firewall disabled==============";
 
 echo "============Node js version setup ===========";
-nvm use v17.8.0
+nvm list-remote
+nvm install v16.14.2
 node -v
 echo "============Chromium dependeancy installing============"
 sudo apt-get update
