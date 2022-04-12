@@ -24,6 +24,9 @@ npm install pm2 -g
 echo "============Chaning direactory to node Project /home/NodeJS-API/============"
 cd /home/NodeJS-API/
 
+echo "npm installing node Modules"
+npm install
+
 echo "============starting project============"
 pm2 start googleBingScraper.js -i max --watch
 
