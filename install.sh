@@ -5,8 +5,8 @@ echo "firewall disabled";
 
 
 echo  "installing Node Js Version:  v16.14.2";
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+$("curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh)
+$("curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash")
 source ~/.bashrc
 nvm install v16.14.2
 echo "Node js installed";
