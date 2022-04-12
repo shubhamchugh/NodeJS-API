@@ -8,6 +8,7 @@ nvm install v16.14.2
 node -v
 
 echo "============NPM installing============"
+sudo apt update
 sudo apt install npm
 echo "============Chromium dependeancy installing============"
 sudo apt-get update
