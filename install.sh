@@ -2,7 +2,8 @@ echo "===========disabling firewall=============";
 sudo ufw disable
 echo "===========firewall disabled==============";
 
-echo "============Node js installed===========";
+echo "============Node js version setup ===========";
+nvm use v17.8.0
 node -v
 echo "============Chromium dependeancy installing============"
 sudo apt-get update
