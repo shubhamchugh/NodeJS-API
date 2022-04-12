@@ -1,7 +1,7 @@
-#!/bin/bash
-"echo" "-e" "====================="
+
+echo "disabling firewall";
 sudo ufw disable
-echo "firewall disable";
+echo "firewall disabled";
 
 
 echo  "installing Node Js Version:  v16.14.2";
