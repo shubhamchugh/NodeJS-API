@@ -104,10 +104,10 @@ app.get('/google', (req, res) => {
             }, div_selector_to_remove_2)
 
             var linkTextsQuestions = await page.$$eval("div.iDjcJe.IX9Lgd.wwB5gf span",
-                elements => elements.map(item => item.textContent))
+                elements => elements.map(item => item.innerHTML))
 
             var linkTextsAnswers = await page.$$eval("div.MBtdbb",
-                elements => elements.map(item => item.textContent))
+                elements => elements.map(item => item.innerHTML))
 
 
 
