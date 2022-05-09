@@ -5,7 +5,7 @@ const port = 3000;
 
 app.get('/google', (req, res) => {
 
-    // Access the provided 'page' and 'limt' query parameters
+    // Access the provided 'page' and 'limit' query parameters
     let url = req.query.url;
 
     let scrape = async () => { // Prepare scrape...
@@ -102,6 +102,27 @@ app.get('/google', (req, res) => {
                     elements2[i].parentNode.removeChild(elements2[i]);
                 }
             }, div_selector_to_remove_2)
+
+            // remove some html from the DOM (Date From PAA) start \\\\\
+
+            let div_selector_to_remove_3 = "span.kX21rb.ZYHQ7e";
+            await page.evaluate((sel) => {
+                var elements3 = document.querySelectorAll(sel);
+                for (var i = 0; i < elements3.length; i++) {
+                    elements3[i].parentNode.removeChild(elements3[i]);
+                }
+            }, div_selector_to_remove_3)
+
+            let div_selector_to_remove_4 = "div.Od5Jsd";
+            await page.evaluate((sel) => {
+                var elements4 = document.querySelectorAll(sel);
+                for (var i = 0; i < elements4.length; i++) {
+                    elements4[i].parentNode.removeChild(elements4[i]);
+                }
+            }, div_selector_to_remove_4)
+
+            // Remove some html from the DOM (Date From PAA) end \\\\\
+
 
             var linkTextsQuestions = await page.$$eval("div.iDjcJe.IX9Lgd.wwB5gf span",
                 elements => elements.map(item => item.innerHTML))
