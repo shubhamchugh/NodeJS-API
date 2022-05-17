@@ -245,6 +245,18 @@ app.get('/bing', (req, res) => {
                 }
             }, div_selector_to_remove3)
 
+
+
+            // remove Date from SERP Bing
+            let div_selector_to_remove4 = "span.news_dt";
+            await page.evaluate((sel) => {
+                var elements = document.querySelectorAll(sel);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].parentNode.removeChild(elements[i]);
+                }
+            }, div_selector_to_remove4)
+
+
             var resultTitle = await page.$$eval("div.b_title > h2",
                 elements => elements.map(item => item.textContent))
             //console.log(resultTitle)
