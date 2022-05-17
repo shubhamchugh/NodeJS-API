@@ -235,6 +235,16 @@ app.get('/bing', (req, res) => {
                 }
             }, div_selector_to_remove_2)
 
+
+            // remove image from rich snippets Bing
+            let div_selector_to_remove3 = "div.df_img.df_ih.df_atct.wide";
+            await page.evaluate((sel) => {
+                var elements = document.querySelectorAll(sel);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].parentNode.removeChild(elements[i]);
+                }
+            }, div_selector_to_remove3)
+
             var resultTitle = await page.$$eval("div.b_title > h2",
                 elements => elements.map(item => item.textContent))
             //console.log(resultTitle)
