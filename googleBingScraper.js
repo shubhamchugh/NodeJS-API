@@ -125,10 +125,10 @@ app.get('/google', (req, res) => {
 
 
             var linkTextsQuestions = await page.$$eval("div.iDjcJe.IX9Lgd.wwB5gf span",
-                elements => elements.map(item => item.innerHTML))
+                elements => elements.map(item => item.textContent))
 
             var linkTextsAnswers = await page.$$eval("div.MBtdbb",
-                elements => elements.map(item => item.innerHTML))
+                elements => elements.map(item => item.textContent))
 
 
 
